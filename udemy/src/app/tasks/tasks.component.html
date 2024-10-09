@@ -1,0 +1,22 @@
+<section id="tasks">
+    <header>
+      <h2>{{name}}'s Tasks</h2>
+      <menu>
+        <button (click)="onStartAddTask()"> Add Task</button>
+      </menu>
+    </header>
+  
+    <!-- Use *ngIf to conditionally show the new task component -->
+    <app-new-task *ngIf="isAddingTask" (cancel)="onCancelAddTask()"></app-new-task>
+  
+    <ul>
+      <li *ngFor="let task of selectedUserTasks; trackBy: trackById; let x=index">
+        <app-task
+          [task]="task"
+          (complete)="onCompleteTaskUpdate($event)">
+        </app-task>
+        <!-- {{x}} -->
+      </li>
+    </ul>
+  </section>
+  
